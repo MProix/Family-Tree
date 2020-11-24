@@ -1,39 +1,33 @@
 
-var newPeopleForm = document.createElement("form");
-newPeopleForm.id = "newPeopleForm";
+function createElt(myParent,cssBalise,cssId,type,name,placeholder,cssClass){
+    var newElt = document.createElement(cssBalise);
+    newElt.id = cssId;
+    newElt.type = type;
+    newElt.name = name;
+    newElt.placeholder = placeholder;
+    newElt.classList.add(cssClass);
+    document.getElementById(myParent).appendChild(newElt);
+    return newElt;
+};
+
+var newPeopleForm = createElt('body','form','newPeopleForm');
 newPeopleForm.method = "post";
 newPeopleForm.action = "treat.php";
-document.getElementById("body").appendChild(newPeopleForm);
 
-var nameInput = document.createElement("input");
-nameInput.id = "nameInput";
-nameInput.classList.add("input");
-nameInput.type = "text";
-nameInput.name = "nameInput";
-nameInput.placeholder = "Name";
-document.getElementById("newPeopleForm").appendChild(nameInput);
+var nameInput = createElt('newPeopleForm','input','nameInput','text','nameInput','name','input');
 
+var firstnameInput = createElt('newPeopleForm','input','firstnameInput','text','firstnameInput','first name','input');
 
-var firstnameInput = document.createElement("input");
-firstnameInput.id = "firstnameInput";
-firstnameInput.classList.add("input");
-firstnameInput.type = "text";
-firstnameInput.name = "firstnameInput";
-firstnameInput.placeholder = "First name";
-document.getElementById("newPeopleForm").appendChild(firstnameInput);
-
-var birthdateLabel = document.createElement("label");
-birthdateLabel.id = "birthdateLabel";
-birthdateLabel.classList.add("label");
+var birthdateLabel = createElt('newPeopleForm','label','birthdateLabel',undefined,undefined,undefined,'label');
 birthdateLabel.textContent = "Birthdate";
-document.getElementById("newPeopleForm").appendChild(birthdateLabel);
 
-var birthdate = document.createElement("input");
-birthdate.id = "birthdate";
-birthdate.classList.add("input");
-birthdate.type = "date";
-birthdate.name = "birthdate";
-document.getElementById("newPeopleForm").appendChild(birthdate);
+var birthdate = createElt('newPeopleForm','input','birthdate','date','birthdate',undefined,'input');
+
+var mother = createElt('newPeopleForm','input','mother','text','mother',"Mother's name and firstname",'input');
+
+var father = createElt('newPeopleForm','input','father','text','father',"Father's name and firstname",'input');
+
+var broSis = createElt('newPeopleForm','input','bro_sis','text','bro_sis',"Brother's and sister's firstnames separated by comas",'input');
 
 for (var elt of newPeopleForm){
     elt.outerHTML += "<br>";
